@@ -38,35 +38,36 @@
            </div>
     @endforeach
 @endif
-<form action="#">
+          <form action="{{route('save-dispatch-product')}}" method="POST">
+                    @csrf
             <div class="card-body">
               <p class="text-muted small">* marked filled must be filled.</p>
               <div class="row">
                 
                 <div class="col-md-6 form-group">
                   <label for="dispatchDate">Date of Dispatch *</label>
-                  <input type="date" name="dispatchDate" id="dispatchDate" class="form-control" required>
+                  <input type="date" name="datedispatch" id="dispatchDate" class="form-control" required>
                 </div>
                 
                 <div class="col-md-6 form-group">
                   <label for="truckNum">Truck Number *</label>
-                  <input type="text" name="truckNum" id="truckNum" class="form-control" required>
+                  <input type="text" name="truck" id="truckNum" class="form-control" required>
                 </div>
 
                 <div class="col-md-6 form-group">
                   <label for="challanNum">Challan Number *</label>
-                  <input type="text" name="challanNum" id="challanNum" class="form-control" required>
+                  <input type="text" name="challan" id="challanNum" class="form-control" required>
                 </div>
 
                 <div class="col-md-6 form-group">
                   <label for="driverNum">Driver Number *</label>
-                  <input type="phone" pattern="[0-9]{10-13}" name="driverNum" id="driverNum" class="form-control" required>
+                  <input type="phone" pattern="[0-9]{10-13}" name="phone" id="driverNum" class="form-control" required>
                 </div>
                 
                 
                 <div class="col-12 form-group">
                   <label for="dispatchType">Type of Dispatch *</label>
-                  <select name="dispatchType" id="dispatchType" class="form-control" onchange="toggler(this)" required>
+                  <select name="dispatch_status" id="dispatchType" class="form-control" onchange="toggler(this)" required>
                     <option value="dis" >Select...</option>
                     <option value="internal">Internal Dispatch</option>
                     <option value="external">External Dispatch</option>
@@ -75,22 +76,23 @@
 
                 <div class="col-12 form-group" id="showInternal" style="display: none;">
                   <label for="ware">Warehouse Name *</label>
-                  <select name="ware" id="ware" class="form-control">
-                    <option value="dis">Select...</option>
-                    <option value="dimak">Dimak</option>
-                  </select>
+                  <select name="warehouse" id="ware" class="form-control" required>
+                      <option value="dis">Select...</option>
+                      <option value="war1">war1</option>
+                      <option value="war2">war2</option>
+                    </select>
                 </div>
 
                 <div class="col-md-6 form-group hiddenDimak" style="display: none;">
                   <label for="siteName">Site Name *</label>
-                  <input type="text" name="siteName" id="siteName" class="form-control">
+                  <input type="text" name="site_name" id="siteName" class="form-control">
                 </div>
                 
                 <div class="col-md-6 form-group hiddenDimak" style="display: none;">
                   <label for="location">Location *</label>
                   <input type="text" name="location" id="location" class="form-control">
                 </div>
-                
+                <input type="hidden" name="dispatch_by" value="admin" class="form-control">
                 <div class="col-12 form-group">
                   <table class="table table-bordered table-hoverable d-block d-md-table" style="overflow-x:auto">
                     <thead>
@@ -170,28 +172,6 @@
       document.getElementById('showInternal').children[1].removeAttribute('required');
     }
   }
-
-  function deleteRow(field){
-    let row = field.parentElement.parentElement;
-    row.remove();
-  } 
-
-  function addFields(){
-    let table = document.getElementById('prodTable');
-    let newRow = document.createElement('tr');
-    newRow.innerHTML = `
-    <td style="width:50%;">
-      <select name="prodName" id="prodName" class="form-control">
-        <option value="dis">Select...</option>
-        <option value="dimak">Dimak</option>
-      </select>
-    </td>
-    <td style="width:20%;"><input type="number" name="prodQuant" id="prodQuant" class="form-control"></td>
-    <td style="width:20%;"><input type="text" name="unit" id="unit" class="form-control"></td>
-    <td align="center"><button class="btn btn-danger" type="button" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
-    `;
-    table.appendChild(newRow);
-  } 
 </script>
 
 @include('component.footer')
