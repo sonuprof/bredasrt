@@ -6,6 +6,7 @@ use App\Http\Controllers\SrtdataController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\SrtreportController;
 use App\Http\Controllers\ProductrequestController;
+use App\Http\Controllers\DispatchproductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,4 +58,10 @@ Route::get('/export-srt',[SrtdataController::class,'export_srt'])->name('export-
 Route::get('/add-request', [ProductrequestController::class, 'index'])->name('add-request');
 Route::post('/save-request', [ProductrequestController::class, 'store'])->name('save-request');
 Route::get('/view-request',[ProductrequestController::class, 'view'])->name('view-request');
+
+
+// DispatchproductController
+Route::get('/dispatch/add-dispatch-products', [DispatchproductController::class, 'add_dispatch_product'])->name('add-product-dispatch');
+Route::post('/dispatch/save-dispatch-products', [DispatchproductController::class, 'store_product'])->name('save-dispatch-product');
+Route::get('/dispatch/view-dispatch-product',[DispatchproductController::class, 'view'])->name('view-product-dispatch');
 

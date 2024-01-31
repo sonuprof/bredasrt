@@ -195,6 +195,33 @@
   });
 </script>
 
+<script>
+
+function deleteRow(field){
+  let row = field.parentElement.parentElement;
+  row.remove();
+} 
+
+function addFields(){
+  let table = document.getElementById('prodTable');
+  let newRow = document.createElement('tr');
+  newRow.innerHTML = `
+  <td style="width:50%;">
+    <select name="products[]" id="prodName" class="form-control">
+      <option value="dis">Select...</option>
+      @foreach($product as $products)
+                            <option value="{{$products->id}}">{{$products->name}} | {{$products->capacity}}</option>
+                            @endforeach
+    </select>
+  </td>
+  <td style="width:20%;"><input type="number" name="quantitiess[]" id="prodQuant" class="form-control"></td>
+  <td style="width:20%;"><input type="text" name="units[]" id="unit" class="form-control"></td>
+  <td align="center"><button class="btn btn-danger" type="button" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+  `;
+  table.appendChild(newRow);
+} 
+</script>
+
 </body>
 
 </html>
