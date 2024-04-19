@@ -31,7 +31,25 @@ class LoginController extends Controller
                 $request->session()->put('loginName', $user->email);
                 $request->session()->put('login', $user->name);
                 $request->session()->put('role', $user->role);
-                return redirect(route('dashboard'));
+                 $request->session()->put('state', $user->state);
+               if($user->role == '1'){
+                return redirect(route('state'));
+               }
+               elseif($user->role == '2'){
+                return redirect(route('state'));
+               }
+               elseif($user->role == '3'){
+                return redirect(route('inhouse-product-dispatch'));
+               }
+               elseif($user->role == '4'){
+               return redirect(route('add-product-dispatch'));
+               }
+               elseif($user->role == '5'){
+               return redirect(route('view-request'));
+               }
+               elseif($user->role == '6'){
+               return redirect(route('add-request'));
+               }
             }
             else{
                 return back()->with('status','Password not matches!!!');
@@ -52,4 +70,19 @@ class LoginController extends Controller
             return redirect(route('login'));
         }
     }
+    
+    
+    public function solartype(Request $request, $state){
+        $data['state'] = $state;
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        return view('pages.solartype', $data);
+       }
+       
+        
+    public function state(Request $request){
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        return view('pages.states', $data);
+       }
 }

@@ -156,7 +156,6 @@
                     <td style="white-space: nowrap;" >{{$srt->rms_url}}</td>
                     <td style="white-space: nowrap;" >{{$srt->rms_status}}</td>
                     <td style="white-space: nowrap;" >{{$srt->geo_image_status}}</td>
-                    
                     <td style="white-space: nowrap;" >{{$srt->abc_format}}</td>
                     <td style="white-space: nowrap;" >{{$srt->comm_report}}</td>
                     <td style="white-space: nowrap;" >{{$srt->iv_curv}}</td>

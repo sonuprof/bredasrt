@@ -79,7 +79,11 @@
                                 <label for="input-3">Role</label>
                                 <select class="form-control"  name="role">
                                 <option value = "1">Admin</option>
-                                <option value = "2">Editor</option>
+                                <option value = "2">MIS Update</option>
+                                <option value = "3">Stock HO</option>
+                                <option value = "4">Stock Manager</option>
+                                <option value = "5">Request Approval</option>
+                                <option value = "6">Vendor</option>
                                 </select>
                             </div>
                         </div>

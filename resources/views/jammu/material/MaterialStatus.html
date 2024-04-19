@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material Status</title>
+
+
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../plugins/fontawesome-free/css/all.min.css">
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../plugins/daterangepicker/daterangepicker.css">
+  <!-- iCheck for checkboxes and radio inputs -->
+  <link rel="stylesheet" href="../plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!-- Bootstrap Color Picker -->
+  <link rel="stylesheet" href="../plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+  <!-- Tempusdominus Bootstrap 4 -->
+  <link rel="stylesheet" href="../plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="../plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+  <!-- BS Stepper -->
+  <link rel="stylesheet" href="../plugins/bs-stepper/css/bs-stepper.min.css">
+  <!-- dropzonejs -->
+  <link rel="stylesheet" href="../plugins/dropzone/min/dropzone.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <link rel="stylesheet" href="../updated_colors.css">
+  <link rel="stylesheet" href="../my-popup.css">
+
+  <link rel="stylesheet" href="./NewStyle.css">
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="hold-transition sidebar-mini">
+
+  <div class="wrapper ">
+    <nav class="main-header navbar navbar-expand navbar-secondary navbar-light text-sm"
+      style="height:58px; background-color: rgb(25, 68, 25) !important; position: sticky; top: 0%; ">
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-light" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
+
+      </ul>
+
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item hidden-mobile">
+          <div class="user-panel  d-flex">
+            <div class="info">
+              <a href="#" class="d-block text-white">User Name</a>
+            </div>
+            <div class="image">
+              <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+              <span class="activedot"></span>
+            </div>
+
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
+
+
+      </ul>
+    </nav>
+
+    <aside class="main-sidebar sidebar-dark-secondary elevation-4"
+      style="background-color:rgb(25, 68, 25) !important; height: 100vh !important; position: fixed;">
+
+
+
+      <p class="brand-link text-light bg-black">
+
+        <img src="./klk.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+          style=" background-color: yellow; border-radius: 50%; padding: 3px;">
+        <span class="brand-text text-white">KLK -Kusum</span>
+
+      </p>
+
+      <div class="sidebar">
+
+        <nav>
+          <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-flat " data-widget="treeview" role="menu"
+            data-accordion="false">
+
+            <li class="nav-item sidesEle bord ">
+              <a href="./index.html" class="nav-link  p-2  ">
+                <i class="nav-icon fas fa-home "></i>
+                <p class="text-white ">
+                  Dashboard
+                </p>
+              </a>
+            </li>
+
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fa fa-user"></i>
+                <p class="text-white">User<i class="fas fa-angle-left right"></i></p>
+              </a>
+              <ul class="nav nav-treeview">
+                <li class="nav-item sidesEle bord">
+                  <a href="#" class="nav-link p-2">
+                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                    <p class="text-white">Add User</p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fas fa-poll-h"></i>
+                <p class="text-white">Servey<i class="fas fa-angle-left right"></i></p>
+              </a>
+              <ul class="nav nav-treeview">
+
+
+                <li class="nav-item sidesEle bord  activePage">
+                  <a href="./Servey.html" class="nav-link   p-2  ">
+                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                    <p class="text-white ">
+                      Add Servey
+                    </p>
+                  </a>
+                </li>
+                <li class="nav-item sidesEle bord  ">
+                  <a href="./viewServey.html" class="nav-link   p-2  ">
+                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                    <p class="text-white ">
+                      View Servey
+                    </p>
+                  </a>
+                </li>
+
+              </ul>
+            </li>
+
+
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fas fa-warehouse"></i>
+                <p class="text-white">Stock</p>
+              </a>
+            </li>
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fa fa-download"></i>
+                <p class="text-white">Installation</p>
+              </a>
+            </li>
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fa fa-file"></i>
+                <p class="text-white">Documentation</p>
+              </a>
+            </li>
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fa fa-check"></i>
+                <p class="text-white">Inspection</p>
+              </a>
+            </li>
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fa fa-credit-card"></i>
+                <p class="text-white">Payment</p>
+              </a>
+            </li>
+            <li class="nav-item sidesEle bord">
+              <a href="#" class="nav-link p-2">
+                <i class="nav-icon fas fa-comment"></i>
+                <p class="text-white">Complaint</p>
+              </a>
+            </li>
+
+
+            <!-- <ul class="nav nav-treeview">
+                                                <li class="nav-item sidesEle bord">
+                                                  <a href="#" class="nav-link p-2">
+                                                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                                                    <p class="text-white">Installation</p>
+                                                  </a>
+                                                </li>
+                                                <li class="nav-item sidesEle bord">
+                                                  <a href="#" class="nav-link p-2">
+                                                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                                                    <p class="text-white">Documentation</p>
+                                                  </a>
+                                                </li>
+                                                <li class="nav-item sidesEle bord">
+                                                  <a href="#" class="nav-link p-2">
+                                                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                                                    <p class="text-white"> Inspection </p>
+                                                  </a>
+                                                </li>
+                                                <li class="nav-item sidesEle bord">
+                                                  <a href="#" class="nav-link p-2">
+                                                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                                                    <p class="text-white">Payment</p>
+                                                  </a>
+                                                </li>
+                                                <li class="nav-item sidesEle bord">
+                                                  <a href="#" class="nav-link p-2">
+                                                    <i class="fas fa-arrow-right nav-icon" style="font-size: small;"></i>
+                                                    <p class="text-white">Complaint</p>
+                                                  </a>
+                                                </li>
+                                
+                                              </ul> -->
+          </ul>
+        </nav>
+
+      </div>
+
+    </aside>
+    <div class="content-wrapper formBack">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <div class="container-fluid">
+
+        </div>
+      </section>
+
+
+      <section class="content">
+        <div class="container-fluid">
+          <div class="card card-default ">
+            <div class="card-header newHead">
+              <h3 class="card-title text-bold">Material Status</h3>
+            </div>
+
+            <form action="#">
+              <div class="card-body">
+                <h6 class="card-subtitle mb-2 text-muted ">The field labels marked with * required input
+                  fields.</h6>
+                <div class="row">
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="orderPump">Order Pump Capacity</label>
+                    <input type="text" name="orderPump" id="orderPump" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="Head">Head</label>
+                    <input type="text" name="Head" id="Head" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="actualOrder">Actual Order</label>
+                    <input type="text" name="actualOrder" id="actualOrder" class="form-control">
+                  </div>
+
+                  <div class="col-12 mt-3">
+                    <p
+                      style="font-weight: bold; font-size: 24px; color: black ;border-bottom: 2px dotted rgb(235, 209, 209);">
+                      Pump </p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="lotNO">Pump Available</label>
+                    <input type="text" name="customerNo" id="customerNo" class="form-control">
+                  </div>
+
+                  <div class="col-lg-4 col-md-6  col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="Application No">Pump Sent on Site</label>
+                    <input type="text" name="Application" id="Application" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6  col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="farmerName">Pump requirement</label>
+                    <input type="text" name="farmerName" id="farmerName" class="form-control">
+                  </div>
+
+                  <div class="col-12">
+                    <p
+                      style="font-weight: bold; font-size: 24px; color: black ;border-bottom: 2px dotted rgb(235, 209, 209);">
+                      BOS
+                    </p>
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">BOS Available</label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12  form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">BOS Sent on Site</label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">BOS Requirement</label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+
+                  <div class="col-12">
+                    <p
+                      style="font-weight: bold; font-size: 24px; color: black ;border-bottom: 2px dotted rgb(235, 209, 209);">
+                      Modules
+                    </p>
+                  </div>
+
+                  <div class="col-lg-4 col-md-6   col-12  form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">Modules Available
+                    </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12 form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">Modules Sent on Site
+                    </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12  form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">Modules Required
+                    </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                  <div class="col-12">
+                    <p
+                      style="font-weight: bold; font-size: 24px; color: black ;border-bottom: 2px dotted rgb(235, 209, 209);">
+                      Structure
+                    </p>
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12  form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">Structure Available
+                    </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+
+                  <div class="col-lg-4 col-md-6   col-12  form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">Structure Sent on Site
+                    </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                  <div class="col-lg-4 col-md-6   col-12  form-group">
+                    <label style="color: rgb(61, 22, 22);" for="FatherName">Structure Required
+                    </label>
+                    <input type="text" name="FatherName" id="FatherName" class="form-control">
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="card-footer" style="background-color: green;  ">
+                <button type="submit" class="btn btn-info  btnSubt  text-bold mr-3">Submit</button>
+                <button type="reset" class="btn btn-info btnCanc  text-bold">
+                  Cancel</button>
+              </div>
+
+            </form>
+          </div>
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="float-right d-none d-sm-block">
+        <b>Version</b> 1.1.0
+      </div>
+      <strong>Copyright &copy; <a href="https://www.etsnetworks.in/">ETS Networks</a>.</strong> All
+      rights
+      reserved.
+    </footer>
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+
+
+
+  <!-- jQuery -->
+  <script src="../../plugins/jquery/jquery.min.js"></script>
+  <!-- Bootstrap 4 -->
+  <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <!-- Select2 -->
+  <script src="../../plugins/select2/js/select2.full.min.js"></script>
+  <!-- Bootstrap4 Duallistbox -->
+  <script src="../../plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+  <!-- InputMask -->
+  <script src="../../plugins/moment/moment.min.js"></script>
+  <script src="../../plugins/inputmask/jquery.inputmask.min.js"></script>
+  <!-- date-range-picker -->
+  <script src="../../plugins/daterangepicker/daterangepicker.js"></script>
+  <!-- bootstrap color picker -->
+  <script src="../../plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+  <!-- Tempusdominus Bootstrap 4 -->
+  <script src="../../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+  <!-- Bootstrap Switch -->
+  <script src="../../plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+  <!-- BS-Stepper -->
+  <script src="../../plugins/bs-stepper/js/bs-stepper.min.js"></script>
+  <!-- dropzonejs -->
+  <script src="../../plugins/dropzone/min/dropzone.min.js"></script>
+  <!-- AdminLTE App -->
+  <script src="../../dist/js/adminlte.min.js"></script>
+  <!-- AdminLTE for demo purposes -->
+  <script src="../../dist/js/demo.js"></script>
+
+
+</body>
+
+</html>

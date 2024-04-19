@@ -41,6 +41,24 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{asset('dist/js/demo.js')}}"></script>
     <!-- Page specific script -->
+    <script style="taxt/javascript">
+  (function calc(){
+    let ssl = document.getElementById('sslBody');
+    let rows = ssl.rows.length;
+    let calc = Array(12).fill(0);
+    let col = 2;
+    for(i=0;i<rows;i++){
+      let col = 2;
+      for(j=0;j<10;j++){
+        calc[col] += parseInt(ssl.children[i].children[col].innerText);
+        col++;
+      }
+    }
+    for(j=1;j<11;j++){
+        document.getElementById('setData').children[j].innerText = calc[j+1]
+    }
+  })();
+</script>
 
     <script>
   $(function () {
@@ -195,32 +213,32 @@
   });
 </script>
 
+
 <script>
+    $(document).ready(function () {
+        $('#warehouseSelect').change(function () {
+            var warehouseId = $(this).val();
 
-function deleteRow(field){
-  let row = field.parentElement.parentElement;
-  row.remove();
-} 
-
-function addFields(){
-  let table = document.getElementById('prodTable');
-  let newRow = document.createElement('tr');
-  newRow.innerHTML = `
-  <td style="width:50%;">
-    <select name="products[]" id="prodName" class="form-control">
-      <option value="dis">Select...</option>
-      @foreach($product as $products)
-                            <option value="{{$products->id}}">{{$products->name}} | {{$products->capacity}}</option>
-                            @endforeach
-    </select>
-  </td>
-  <td style="width:20%;"><input type="number" name="quantitiess[]" id="prodQuant" class="form-control"></td>
-  <td style="width:20%;"><input type="text" name="units[]" id="unit" class="form-control"></td>
-  <td align="center"><button class="btn btn-danger" type="button" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
-  `;
-  table.appendChild(newRow);
-} 
+            // Make AJAX request
+            $.ajax({
+                url: '/get-products/' + warehouseId,
+                type: 'GET',
+                success: function (data) {
+                    // Clear and populate product dropdown
+                    $('.productSelect').empty();
+                    $.each(data, function (key, value) {
+                        $('.productSelect').append('<option value="' + value.id + '">' + value.name + ' - ' + value.capacity + ' | Qty: ' + value.quantity + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
 </script>
+
+
 
 </body>
 

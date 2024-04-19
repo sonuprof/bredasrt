@@ -11,6 +11,67 @@ use file;
 
 class SrtdataController extends Controller
 {
+    
+       public function indexssl(Request $request)
+    {
+        $data['role'] = $request->session()->get('role');
+        $data['username'] = $request->session()->get('login');
+        return view('indexssl', $data);
+    }
+    
+        public function main_srt_data(Request $request, $status){
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        $username = $request->session()->get('loginName');
+        $role = $request->session()->get('role');
+        if($status == 'not-dispatched'){
+            $data['srts'] = DB::table('srtdatas')->where('material_i_date','N/A')->get();
+        }
+        elseif($status == 'dispatched'){
+            $data['srts'] = DB::table('srtdatas')->where('material_i_date','!=','N/A')->get();
+        }
+        elseif($status == 'not-install'){
+            $data['srts'] = DB::table('srtdatas')->where('installation_status', '!=' ,'Installed' )->get();
+        }
+         elseif($status == 'install'){
+            $data['srts'] = DB::table('srtdatas')->where('installation_status', '=' ,'Installed' )->get();
+        }
+         elseif($status == 'not-ic-bill-submit'){
+            $data['srts'] = DB::table('srtdatas')->where('ic_bill_nsubmit', '!=' ,'Yes' )->get();
+        }
+         elseif($status == 'ic-bill-submit'){
+            $data['srts'] = DB::table('srtdatas')->where('ic_bill_nsubmit', 'Yes' )->get();
+        }
+        elseif($status == 'not-rms-working'){
+            $data['srts'] = DB::table('srtdatas')->where('rms_status', '!=' ,'Installed' )->get();
+        }
+         elseif($status == 'rms-working'){
+            $data['srts'] = DB::table('srtdatas')->where('rms_status', '=' ,'Installed' )->get();
+        }
+        elseif($status == 'meter-not-install'){
+            $data['srts'] = DB::table('srtdatas')->where('metering_status', '!=' ,'Installed' )->get();
+        }
+         elseif($status == 'meter-install'){
+            $data['srts'] = DB::table('srtdatas')->where('metering_status', 'Installed' )->get();
+        }
+        elseif($status == 'not-material-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('material_payment', '!=' ,'Yes' )->get();
+        }
+         elseif($status == 'material-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('material_payment', '=' ,'Yes' )->get();
+        }
+        elseif($status == 'ic-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('ic_payment', '!=' ,'Yes' )->get();
+        }
+        elseif($status == 'not-ic-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('material_payment', '=' ,'Yes' )->get();
+        }
+        elseif($status == 'phase'){
+           $data['srts'] = DB::table('srtdatas')->where('phase', $phase)->get(); 
+        }
+        return view('srt.srt-data', $data);
+       
+    }
 
     public function index(Request $request){
         $data['username'] = $request->session()->get('loginName');
@@ -22,16 +83,23 @@ class SrtdataController extends Controller
             DB::raw('COUNT(firm_name) AS site_count'),
             DB::raw('SUM(sanction_load) AS sanction_load'),
             DB::raw('SUM(CASE WHEN material_i_date != "N/A" THEN sanction_load ELSE 0 END) AS material_i_date'),
+            DB::raw('SUM(CASE WHEN material_i_date = "N/A" THEN sanction_load ELSE 0 END) AS material_ni_date'),
             DB::raw('SUM(CASE WHEN material_payment = "Yes" THEN plant_sc ELSE 0 END) AS material_payment'),
+            DB::raw('SUM(CASE WHEN material_payment != "Yes" THEN plant_sc ELSE 0 END) AS material_npayment'),
             DB::raw('SUM(CASE WHEN installation_status = "Installed" THEN sanction_load END) AS installation_status'),
+            DB::raw('SUM(CASE WHEN installation_status != "Installed" THEN sanction_load END) AS installation_nstatus'),
             DB::raw('SUM(CASE WHEN ic_bill_submit = "Yes" THEN plant_sc ELSE 0 END) AS ic_bill_submit'),
+            DB::raw('SUM(CASE WHEN ic_bill_submit != "Yes" THEN plant_sc ELSE 0 END) AS ic_bill_nsubmit'),
             DB::raw('COUNT(CASE WHEN metering_status = "Installed" THEN site_name END) AS metering_status'),
+            DB::raw('COUNT(CASE WHEN metering_status != "Installed" THEN site_name END) AS metering_nstatus'),
             DB::raw('COUNT(CASE WHEN rms_status = "Installed" THEN firm_name END) AS rms_status'),
+            DB::raw('COUNT(CASE WHEN rms_status != "Installed" THEN firm_name END) AS rms_nstatus'),
             DB::raw('COUNT(CASE WHEN abc_format = "Yes" THEN firm_name END) AS abc_format'),
             DB::raw('COUNT(CASE WHEN geo_image_status = "Yes" THEN firm_name END) AS geo_image_status'),
             DB::raw('COUNT(CASE WHEN insurance = "Yes" THEN firm_name END) AS insurance'),
             DB::raw('SUM(CASE WHEN bill_i_no != "N/A" THEN sanction_load ELSE 0 END) AS bill_i_no'),
-            DB::raw('SUM(CASE WHEN final_i_dt = "Yes" THEN sanction_load ELSE 0 END) AS ic_payment')
+            DB::raw('SUM(CASE WHEN final_i_dt = "Yes" THEN sanction_load ELSE 0 END) AS ic_payment'),
+            DB::raw('SUM(CASE WHEN final_i_dt != "Yes" THEN sanction_load ELSE 0 END) AS ic_npayment'),
         )
         ->first();
         
@@ -40,7 +108,7 @@ class SrtdataController extends Controller
         ->select(
             DB::raw('COUNT(firm_name) AS site_count'),
             DB::raw('SUM(sanction_load) AS sanction_load'),
-            DB::raw('COUNT(CASE WHEN phase = "N/F" THEN firm_name END) AS nf'),
+            DB::raw('COUNT(CASE WHEN installation_status = "Cancelled" THEN firm_name END) AS nf'),
             DB::raw('COUNT(CASE WHEN material_i_date != "N/A" THEN firm_name END) AS material_i_date'),
             DB::raw('COUNT(CASE WHEN material_payment = "Yes" THEN firm_name ELSE 0 END) AS material_payment'),
             DB::raw('COUNT(CASE WHEN installation_status = "Installed" THEN firm_name END) AS installation_status'),
@@ -439,6 +507,146 @@ public function getDistricts($phase)
         return view('srt.srt-data', $data);
        
     }
+    
+
+    public function phase_srt_data(Request $request, $status,$phase){
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        $username = $request->session()->get('loginName');
+        $role = $request->session()->get('role');
+        if($status == 'not-dispatched'){
+            $data['srts'] = DB::table('srtdatas')->where('material_i_date','N/A')->where('phase', $phase)->get();
+        }
+        elseif($status == 'payment'){
+            $data['srts'] = DB::table('srtdatas')->where('material_payment','Yes')->where('phase', $phase)->get();
+        }
+        elseif($status == 'Installed'){
+            $data['srts'] = DB::table('srtdatas')->where('installation_status','Installed' )->where('phase', $phase)->get();
+        }
+         elseif($status == 'bill-submit'){
+            $data['srts'] = DB::table('srtdatas')->where('ic_bill_submit','Yes' )->where('phase', $phase)->get();
+        }
+        elseif($status == 'meter'){
+            $data['srts'] = DB::table('srtdatas')->where('metering_status','Installed' )->where('phase', $phase)->get();
+        }
+         elseif($status == 'rms'){
+            $data['srts'] = DB::table('srtdatas')->where('rms_status', '=' ,'Installed' )->where('phase', $phase)->get();
+        }
+        elseif($status == 'abc-format'){
+            $data['srts'] = DB::table('srtdatas')->where('abc_format','Yes' )->where('phase', $phase)->get();
+        }
+         elseif($status == 'geo-image'){
+            $data['srts'] = DB::table('srtdatas')->where('geo_image_status', 'Yes' )->where('phase', $phase)->get();
+        }
+        elseif($status == 'insurance'){
+            $data['srts'] = DB::table('srtdatas')->where('insurance','Yes' )->where('phase', $phase)->get();
+        }
+        elseif($status == 'bill_i_no'){
+            $data['srts'] = DB::table('srtdatas')->where('bill_i_no', '!=','N/A' )->where('phase', $phase)->get();
+        }
+         elseif($status == 'ic-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('final_i_dt','Yes' )->where('phase', $phase)->get();
+        }
+        elseif($status == 'phase'){
+           $data['srts'] = DB::table('srtdatas')->where('phase', $phase)->get(); 
+        }
+        return view('srt.srt-data', $data);
+       
+    }
+    
+    
+    
+ public function district_srt_data(Request $request, $status,$district){
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        $username = $request->session()->get('loginName');
+        $role = $request->session()->get('role');
+        if($status == 'not-dispatched'){
+            $data['srts'] = DB::table('srtdatas')->where('material_i_date','N/A')->where('district', $district)->get();
+        }
+        elseif($status == 'payment'){
+            $data['srts'] = DB::table('srtdatas')->where('material_payment','Yes')->where('district', $district)->get();
+        }
+        elseif($status == 'Installed'){
+            $data['srts'] = DB::table('srtdatas')->where('installation_status','Installed' )->where('district', $district)->get();
+        }
+         elseif($status == 'bill-submit'){
+            $data['srts'] = DB::table('srtdatas')->where('ic_bill_submit','Yes' )->where('district', $district)->get();
+        }
+        elseif($status == 'meter'){
+            $data['srts'] = DB::table('srtdatas')->where('metering_status','Installed' )->where('district', $district)->get();
+        }
+         elseif($status == 'rms'){
+            $data['srts'] = DB::table('srtdatas')->where('rms_status', '=' ,'Installed' )->where('district', $district)->get();
+        }
+        elseif($status == 'abc-format'){
+            $data['srts'] = DB::table('srtdatas')->where('abc_format','Yes' )->where('district', $district)->get();
+        }
+         elseif($status == 'geo-image'){
+            $data['srts'] = DB::table('srtdatas')->where('geo_image_status', 'Yes' )->where('district', $district)->get();
+        }
+        elseif($status == 'insurance'){
+            $data['srts'] = DB::table('srtdatas')->where('insurance','Yes' )->where('district', $district)->get();
+        }
+        elseif($status == 'bill_i_no'){
+            $data['srts'] = DB::table('srtdatas')->where('bill_i_no', '!=','N/A' )->where('district', $district)->get();
+        }
+         elseif($status == 'ic-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('final_i_dt','Yes' )->where('district', $district)->get();
+        }
+        elseif($status == 'district'){
+           $data['srts'] = DB::table('srtdatas')->where('district', $district)->get(); 
+        }
+        return view('srt.srt-data', $data);
+       
+    }
+    
+    
+     public function vendor_srt_data(Request $request, $status,$vendor){
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        $username = $request->session()->get('loginName');
+        $role = $request->session()->get('role');
+        if($status == 'not-dispatched'){
+            $data['srts'] = DB::table('srtdatas')->where('material_i_date','N/A')->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'payment'){
+            $data['srts'] = DB::table('srtdatas')->where('material_payment','Yes')->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'Installed'){
+            $data['srts'] = DB::table('srtdatas')->where('installation_status','Installed' )->where('vendor', $vendor)->get();
+        }
+         elseif($status == 'bill-submit'){
+            $data['srts'] = DB::table('srtdatas')->where('ic_bill_submit','Yes' )->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'meter'){
+            $data['srts'] = DB::table('srtdatas')->where('metering_status','Installed' )->where('vendor', $vendor)->get();
+        }
+         elseif($status == 'rms'){
+            $data['srts'] = DB::table('srtdatas')->where('rms_status', '=' ,'Installed' )->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'abc-format'){
+            $data['srts'] = DB::table('srtdatas')->where('abc_format','Yes' )->where('vendor', $vendor)->get();
+        }
+         elseif($status == 'geo-image'){
+            $data['srts'] = DB::table('srtdatas')->where('geo_image_status', 'Yes' )->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'insurance'){
+            $data['srts'] = DB::table('srtdatas')->where('insurance','Yes' )->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'bill_i_no'){
+            $data['srts'] = DB::table('srtdatas')->where('bill_i_no', '!=','N/A' )->where('vendor', $vendor)->get();
+        }
+         elseif($status == 'ic-payment'){
+            $data['srts'] = DB::table('srtdatas')->where('final_i_dt','Yes' )->where('vendor', $vendor)->get();
+        }
+        elseif($status == 'vendor'){
+           $data['srts'] = DB::table('srtdatas')->where('vendor', $vendor)->get(); 
+        }
+        return view('srt.srt-data', $data);
+       
+    }
+    
     
     
 }

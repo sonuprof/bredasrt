@@ -1,191 +1,88 @@
+<style>
+  .dot {
+    display: block;
+    position: absolute;
+    height: 10px !important;
+    width: 10px !important;
+    background-color: #6de708;
+    border-radius: 50%;
+    top: 25px;
+    left: 35px;
+  }
 
+  .activePage {
+    background-color: #785822;
+
+    font-weight: 800;
+  }
+
+  .sidesEle {
+    font-size: 16px;
+    font-weight: 400;
+  }
+</style>
 </head>
 
+
+
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-        <!-- Navbar -->
-        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-            <!-- Left navbar links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-                <!--</li>-->
-                <!--    <a href="../../index3.html" class="nav-link">Home</a>-->
-                <!--</li>-->
-                <!--<li class="nav-item d-none d-sm-inline-block">-->
-                <!--    <a href="#" class="nav-link">Contact</a>-->
-                <!--</li>-->
-            </ul>
+  <div class="wrapper">
 
-            <!-- Right navbar links -->
-            <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <!-- <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li> -->
+    <nav class="main-header navbar navbar-expand navbar-secondary navbar-light text-sm"
+      style="height:58px; background-color: rgb(51, 50, 50) !important; position: sticky; top: 0%; ">
+      <!-- Left navbar links -->
+      <ul class="navbar-nav">
+        <li class="nav-item sidesEle ">
+          <a class="nav-link text-light" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        </li>
 
-                <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="../../dist/img/user1-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="../../dist/img/user8-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="../../dist/img/user3-128x128.jpg" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i
-                                                class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
-                </li>
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-item dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-                        <i class="fas fa-expand-arrows-alt"></i>
-                    </a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-                        <i class="fas fa-th-large"></i>
-                    </a>
-                </li> -->
-            </ul>
-        </nav>
-        <!-- /.navbar -->
+      </ul>
 
-        <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="{{route('dashboard')}}" class="brand-link bg-light">
-                <img height="80px" src="{{asset('dist/img/klk.jpeg')}}" alt="AdminLTE Logo"
-                 style="opacity: .8">
-            </a>
+      <ul class="navbar-nav ml-auto">
 
-            <!-- Sidebar -->
-            <div class="sidebar">
-                <!-- Sidebar user (optional) -->
-                <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <div class="image">
-                        <img src="../../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
-                    </div>
-                    <div class="info">
-                        <a href="#" class="d-block">Username</a>
-                    </div>
-                </div> -->
+        <li class="nav-item sidesEle  hidden-mobile">
+          <div class="user-panel  d-flex">
+            <div class="image">
+              <img src="{{asset('dist/img/avatar4.png')}}" class="img-circle elevation-2" alt="User Image">
+              <span class="dot"></span>
+            </div>
+            <!--<div class="info">-->
+            <!--  <a href="#" class="d-block text-white">Alexander Pierce</a>-->
+            <!--</div>-->
+          </div>
+        </li>
+        <li class="nav-item sidesEle ">
+          <a class="nav-link text-light" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt"></i>
+          </a>
+        </li>
 
-                <!-- SidebarSearch Form -->
-                <div class="form-inline pt-2">
-                    <div class="input-group" data-widget="sidebar-search">
-                        <input class="form-control form-control-sidebar" type="search" placeholder="Search"
-                            aria-label="Search">
-                        <div class="input-group-append">
-                            <button class="btn btn-sidebar">
-                                <i class="fas fa-search fa-fw"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Sidebar Menu -->
-                <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
-                        data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
+      </ul>
+    </nav>
 
-               <li class="nav-item">
+    <aside class="main-sidebar sidebar-dark-secondary elevation-4"
+      style="background-color:rgb(51, 50, 50) !important; height: 100vh !important; position: fixed;">
+
+
+
+      <p class="brand-link text-light  " >
+
+        <img src="{{asset('dist/img/klk.png')}}" alt="AdminLTE Logo" class="brand-image img-circle p-1 elevation-3"
+          style=" background-color: white;padding: 2px;">
+        <span class="brand-text text-white">KLK Ventures</span>
+
+      </p>
+
+      <div class="sidebar">
+
+
+        <nav>
+          <ul class="nav nav-pills nav-sidebar flex-column text-sm nav-flat" data-widget="treeview" role="menu"
+            data-accordion="false">
+    @if($role == '1')
+
+               <li class="nav-item sidesEle  activePage">
                             <a href="{{route('dashboard')}}" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
@@ -193,7 +90,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item sidesEle ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-users"></i>
                                 <p>
@@ -202,13 +99,13 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <li class="nav-item sidesEle ">
                                     <a href="{{route('add-user')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Add User</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item sidesEle ">
                                     <a href="{{route('view-user')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>View User</p>
@@ -217,7 +114,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item sidesEle ">
                             <a href="{{route('view-srt')}}" class="nav-link">
                                 <i class="nav-icon fas fa-map-marked"></i>
                                 <p>
@@ -226,7 +123,7 @@
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item sidesEle ">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
@@ -235,19 +132,19 @@
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
-                                <li class="nav-item">
+                                <li class="nav-item sidesEle ">
                                     <a href="{{route('phasewise-report')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Phase Wise</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item sidesEle ">
                                     <a href="{{route('districtwise-report')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>District Wise</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <li class="nav-item sidesEle ">
                                     <a href="{{route('vendorwise-report')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Vendor Wise</p>
@@ -255,8 +152,424 @@
                                 </li>
                             </ul>
                         </li>
+                        
+                        <li class="nav-item sidesEle ">
+                            <a href="{{route('view-product')}}" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                   Product
+                                </p>
+                            </a>
+                        </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Request
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Request</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Request</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Dispatch
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item sidesEle ">
+                                    <a href="{{route('inhouse-product-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inhouse Dispatch</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-inhouse-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Inhouse</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-product-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Dispatch</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-product-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Outer</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Complaint
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Complaint</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Complaint</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+            @elseif($role == '2')
+            
+                           <li class="nav-item sidesEle ">
+                            <a href="{{route('dashboard')}}" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="{{route('view-srt')}}" class="nav-link">
+                                <i class="nav-icon fas fa-map-marked"></i>
+                                <p>
+                                   SRT
+                                </p>
+                            </a>
+                        </li>
+                 <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Complaint
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Complaint</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Complaint</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Report
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('phasewise-report')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Phase Wise</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('districtwise-report')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>District Wise</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('vendorwise-report')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Vendor Wise</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+            
+            @elseif($role == '3')
+            
+                        <li class="nav-item sidesEle ">
+                            <a href="{{route('view-product')}}" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                   Product
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Request
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Request</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Dispatch
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item sidesEle ">
+                                    <a href="{{route('inhouse-product-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Inhouse Dispatch</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-inhouse-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Inhouse</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                                      <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Complaint
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Complaint</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Complaint</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+            
+            
+            @elseif($role == '4')
+            
+                        <li class="nav-item sidesEle ">
+                            <a href="{{route('view-product')}}" class="nav-link">
+                                <i class="nav-icon fas fa-box"></i>
+                                <p>
+                                   Product
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Request
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Request</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Dispatch
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-product-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Product Dispatch</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-product-dispatch')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Outer</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+            
+                       <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Complaint
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Complaint</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Complaint</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+            
+            
+                    @elseif($role == '5')
+                <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Request
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Request</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                                      <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Complaint
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Complaint</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Complaint</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+            @elseif($role == '6')
+            
+               <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-users"></i>
+                                <p>
+                                   Request
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Request</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-request')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Request</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                         <li class="nav-item sidesEle ">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                   Complaint
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('add-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Add Complaint</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item sidesEle ">
+                                    <a href="{{route('view-complaint')}}" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>View Complaint</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+         
+              </ul>
+            </li>
+            
+            @endif
+
+                        <li class="nav-item sidesEle ">
                             <a href="{{route('logout')}}" class="nav-link">
                                 <i class="nav-icon fa fa-fw fa-power-off"></i>
                                 <p>
@@ -265,8 +578,11 @@
                             </a>
                         </li>
                     </ul>
-                </nav>
-                <!-- /.sidebar-menu -->
-            </div>
-            <!-- /.sidebar -->
-        </aside>
+          </li>
+          </ul>
+        </nav>
+
+      </div>
+
+    </aside>
+

@@ -1,5 +1,10 @@
 @include('component.head')
+@include('component.table-head')
+@if($state == 'bihar')
 @include('component.header')
+@else
+@include('component.kusum-header')
+@endif
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Add Product Request</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item ">Dashboard v1</li>
+              <li class="breadcrumb-item ">Add Product Request</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -52,8 +57,9 @@
                     <label for="ware">Warehouse Name *</label>
                     <select name="warehouse" id="ware" class="form-control" required>
                       <option value="dis">Select...</option>
-                      <option value="war1">war1</option>
-                      <option value="war2">war2</option>
+                      @foreach($warehouse as $warehouses)
+                      <option value="{{$warehouses->warehouse}}">{{$warehouses->warehouse}}</option>
+                      @endforeach
                     </select>
                   </div>
 
@@ -108,6 +114,33 @@
     <!-- /.content -->
   </div>
  <!-- /.content-wrapper -->
+
+ <script>
+
+function deleteRow(field){
+  let row = field.parentElement.parentElement;
+  row.remove();
+} 
+
+function addFields(){
+  let table = document.getElementById('prodTable');
+  let newRow = document.createElement('tr');
+  newRow.innerHTML = `
+  <td style="width:50%;">
+    <select name="products[]" id="prodName" class="form-control">
+      <option value="dis">Select...</option>
+      @foreach($product as $products)
+                            <option value="{{$products->id}}">{{$products->name}} | {{$products->capacity}}</option>
+                            @endforeach
+    </select>
+  </td>
+  <td style="width:20%;"><input type="number" name="quantitiess[]" id="prodQuant" class="form-control"></td>
+  <td style="width:20%;"><input type="text" name="units[]" id="unit" class="form-control"></td>
+  <td align="center"><button class="btn btn-danger" type="button" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+  `;
+  table.appendChild(newRow);
+} 
+</script>
 @include('component.footer')
 
 

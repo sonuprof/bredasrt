@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
-use App\Models\product;
+use App\Models\Product;
 use App\Models\User;
 use DB;
 use Session;
@@ -20,19 +20,41 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $warehouse = $request->session()->get('warehouse');
-        $data['product'] = DB::table('products')->where('warehouse', $warehouse)->orderBy('name')->get();
+        $data['product'] = DB::table('products')->orderBy('name')->get();
         $data['username'] = $request->session()->get('loginName');
         $data['role'] = $request->session()->get('role');
+        $data['state'] = $request->session()->get('state');
         $username = $request->session()->get('loginName');
         $role = $request->session()->get('role');
         return view('product.view-product', $data);
+    }
+    
+      public function index_kusum(Request $request)
+    {
+        $warehouse = $request->session()->get('warehouse');
+        $data['product'] = DB::table('products')->orderBy('name')->get();
+        $data['username'] = $request->session()->get('loginName');
+        $data['role'] = $request->session()->get('role');
+        $data['state'] = $request->session()->get('state');
+        $username = $request->session()->get('loginName');
+        $role = $request->session()->get('role');
+        return view('kusum.product.view-product', $data);
     }
 
     public function add_product(Request $request){
         $data['username'] = $request->session()->get('login');
         $data['role'] = $request->session()->get('role');
+          $data['state'] = $request->session()->get('state');
         return view('product.add-product', $data);
     }
+    
+    public function add_product_kusum(Request $request){
+        $data['username'] = $request->session()->get('login');
+        $data['role'] = $request->session()->get('role');
+          $data['state'] = $request->session()->get('state');
+        return view('kusum.product.add-product', $data);
+    }
+
 
     /**
      * Show the form for creating a new resource.
@@ -61,7 +83,16 @@ class ProductController extends Controller
     {
         $data['product'] = DB::table('products')->where('id', $id)->first();
         $data['role'] = $request->session()->get('role');
+          $data['state'] = $request->session()->get('state');
         return view('product.update-product', $data);
+    }
+    
+      public function edit_kusum(Request $request, $id)
+    {
+        $data['product'] = DB::table('products')->where('id', $id)->first();
+        $data['role'] = $request->session()->get('role');
+          $data['state'] = $request->session()->get('state');
+        return view('kusum.product.update-product', $data);
     }
 
 
@@ -80,8 +111,5 @@ class ProductController extends Controller
        
     }
 
-    public function destroy($id)
-    {
-        //
-    }
+  
 }

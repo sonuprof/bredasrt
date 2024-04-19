@@ -16,6 +16,6 @@ class Productrequest extends Model
     ];
     
     public function products(){
-        return $this->belongsToMany(product::class)->withPivot(['id','quantity','units']);
+        return $this->belongsToMany(Product::class)->withPivot(['id','quantity','unit']);
     }
 }

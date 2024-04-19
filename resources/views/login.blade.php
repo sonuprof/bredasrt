@@ -1,123 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>KLK VENTURES</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KLK VENTURES - Login</title>
+ <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <style>
+  body {
+   background-color: rgb(211, 255, 254);
+   /* min-height: 100vh; */
+   overflow: hidden;
+   padding: 50px;
+  }
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
-  
+  @media screen and (max-width: 768px) {
+   body {
+    overflow: auto;
+    padding: 10px;
+   }
+  }
+
+  @media screen and (max-width: 464px) {
+   .heading {
+    font-size: 15px;
+   }
+
+
+  }
+ </style>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-primary moii">
-    <div class="card-header text-center">
-      <a href="#" class="h1"><b>KLK VENTURES</a>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Sign in </p>
 
-      @if(session()->has('status'))
-                <div class="text-danger">
-                    {{session('status')}}
-                </div>
-                @endif
-
-      @if ($errors->any())
-     @foreach ($errors->all() as $error)
-     <div class="text-danger">
-                 {{ $error }}
-           </div>
-    @endforeach
-@endif
-      <form action="{{route('loginuser')}}" method="post"  enctype="multipart/form-data">
+<body>
+ <div style="background-color: rgb(211, 255, 254);;"> <img src="{{asset('dist/img/klk.png')}}" style="height: 60px;">
+  <span class="heading" style="font-weight: bold; letter-spacing: 1px; font-size:22px;" class="text-center">KLK <span
+    style="color: brown;">Ventures</span> Pvt
+   Ltd.</span>
+ </div>
+ <div style="background-color: rgb(211, 255, 254);">
+  <div class="row">
+   <div class="col-md-6 col-12 mt-2 md:mt-0"
+    style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 style="justify-self: flex-start; "> <i class="fa fa-user-circle-o mr-3" aria-hidden="true"></i>User Login</h1>
+      <form action="{{route('loginuser')}}" method="post"  enctype="multipart/form-data" style="width: 80%; margin-top: 20px; font-weight: bold;" >
         @csrf
-        <div class="input-group mb-3 d-flex flex-column">
-          <label for="email" class="text-muted mb-0">User Id</label>
-          <div class="input-group ">
-            <input type="email" class="form-control" name="email" id="mail" onkeydown="updateMail()" placeholder="Enter User Id">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <label for="password" class="text-muted mb-0">Password</label>
-          <div class="input-group ">
-            <input type="password" class="form-control" name="password" id="pass" onkeydown="updatePass()" placeholder="Enter Password">
-            <div class="input-group-append">
-              <div class="input-group-text" style="cursor:pointer;" onclick="showPass()">
-                <span class="fas fa-lock"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="row">
-          <div class="col-8">
-            <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Remember Me
-              </label>
-            </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" id="dimak" class="btn btn-primary btn-block" disabled>Sign In</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-    </div>
-    <!-- /.card-body -->
+     <div class="form-group">
+      <label for="username">Username</label>
+       <input type="email" class="form-control" name="email" id="mail" onkeydown="updateMail()" placeholder="Enter User Id" style="height: 45px;">
+     </div>
+     <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" id="pass" onkeydown="updatePass()" placeholder="Enter Password" style="height: 45px;" >
+
+     </div>
+     <button type="submit" id="dimak"  class="btn  btn-block text-white  "
+      style="background-color: blue; font-weight: bold; margin-top: 20px;">Log-in</button>
+    </form>
+   </div>
+   <div class="col-md-6 col-12 md:mt-0 mt-2">
+    <img src="{{asset('dist/img/sideLogin.avif')}}" style="mix-blend-mode: darken; height: 100%;width: 100%;">
+   </div>
   </div>
-  <!-- /.card -->
-</div>
-<!-- /.login-box -->
-<script>
-  function showPass(){
-    document.getElementById('pass').type = "text";
-    setTimeout(() => {
-    document.getElementById('pass').type = "password";
-    },2000);
-  }
 
-  let mail = false;
-  let pass = false;
-
-  function updateMail(){
-    mail = true;
-    check();
-  }
-
-  function updatePass(){
-    pass = true;
-    check();
-  }
-
-  function check(){
-    if(mail == true && pass == true){
-      document.getElementById('dimak').removeAttribute('disabled');
-    }
-  }
-
-</script>
-<!-- jQuery -->
-<script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('dist/js/adminlte.min.js')}}"></script>
+ </div>
+ <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+ <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>

@@ -11,6 +11,6 @@ class Dispatchproduct extends Model
     protected $fillable = ['warehouse', 'datedispatch', 'truck', 'challan', 'phone', 'dispatch_status', 'site_name', 'location', 'dispatch_by', 'd_warehouse'];
 
     public function products(){
-        return $this->belongsToMany(product::class)->withPivot(['id','quantity','unit']);;
+        return $this->belongsToMany(Product::class)->withPivot(['id','quantity','unit']);;
     }
 }

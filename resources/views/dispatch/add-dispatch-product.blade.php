@@ -1,5 +1,10 @@
 @include('component.head')
+@include('component.table-head')
+@if($state == 'bihar')
 @include('component.header')
+@else
+@include('component.kusum-header')
+@endif
 <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -7,12 +12,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashboard</h1>
+            <h1 class="m-0">Add Outer Dispatch</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item ">Dashboard v1</li>
+              <li class="breadcrumb-item ">Add Outer Dispatch</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -38,7 +43,7 @@
            </div>
     @endforeach
 @endif
-          <form action="{{route('save-dispatch-product')}}" method="POST">
+          <form action="{{route('outer-dispatch')}}" method="POST">
                     @csrf
             <div class="card-body">
               <p class="text-muted small">* marked filled must be filled.</p>
@@ -61,37 +66,31 @@
 
                 <div class="col-md-6 form-group">
                   <label for="driverNum">Driver Number *</label>
-                  <input type="phone" pattern="[0-9]{10-13}" name="phone" id="driverNum" class="form-control" required>
+                  <input type="number" pattern="[0-9]{10-13}" name="phone" id="driverNum" class="form-control" required>
                 </div>
                 
-                
-                <div class="col-12 form-group">
-                  <label for="dispatchType">Type of Dispatch *</label>
-                  <select name="dispatch_status" id="dispatchType" class="form-control" onchange="toggler(this)" required>
-                    <option value="dis" >Select...</option>
-                    <option value="internal">Internal Dispatch</option>
-                    <option value="external">External Dispatch</option>
-                  </select>
-                </div>
 
-                <div class="col-12 form-group" id="showInternal" style="display: none;">
-                  <label for="ware">Warehouse Name *</label>
-                  <select name="warehouse" id="ware" class="form-control" required>
-                      <option value="dis">Select...</option>
-                      <option value="war1">war1</option>
-                      <option value="war2">war2</option>
-                    </select>
-                </div>
-
-                <div class="col-md-6 form-group hiddenDimak" style="display: none;">
+                <div class="col-md-4 form-group ">
                   <label for="siteName">Site Name *</label>
                   <input type="text" name="site_name" id="siteName" class="form-control">
                 </div>
                 
-                <div class="col-md-6 form-group hiddenDimak" style="display: none;">
+                <div class="col-md-4 form-group ">
                   <label for="location">Location *</label>
                   <input type="text" name="location" id="location" class="form-control">
                 </div>
+
+                <div class="col-md-4 form-group ">
+                  <label for="ware">Warehouse Name *</label>
+                  <select name="d_warehouse" id="warehouseSelect" class="form-control" required>
+                     <option value="dis">Select...</option>
+                      @foreach($warehouse as $warehouses)
+                      <option value="{{$warehouses->warehouse}}">{{$warehouses->warehouse}}</option>
+                      @endforeach
+                    </select>
+                </div>
+
+                <input type="hidden" name="dispatch_status" value="external" class="form-control">
                 <input type="hidden" name="dispatch_by" value="admin" class="form-control">
                 <div class="col-12 form-group">
                   <table class="table table-bordered table-hoverable d-block d-md-table" style="overflow-x:auto">
@@ -100,17 +99,14 @@
                         <th style="width:50%;">Product Name</th>
                         <th style="width:20%;">Quantity</th>
                         <th style="width:20%;">Unit</th>
-                        <th style= text-align: center;"><i class="fa fa-trash-alt"></i></th>
+                        <th style="text-align: center;"><i class="fa fa-trash-alt"></i></th>
                       </tr>
                     </thead>
                     <tbody id="prodTable">
                     <tr>
                           <td style="width:50%;">
-                            <select name="products[]" id="prodName" class="form-control">
+                            <select name="products[]" id="prodName" class="form-control productSelect pro">
                               <option value="dis">Select...</option>
-                              @foreach($product as $products)
-                              <option value="{{$products->id}}">{{$products->name}} | {{$products->capacity}}</option>
-                              @endforeach
                             </select>
                           </td>
                           <td style="width:20%;"><input type="number" name="quantitiess[]" id="prodQuant" class="form-control"></td>
@@ -146,14 +142,14 @@
     if(option == 'internal'){
       document.getElementById('showInternal').style.display = "block";
       document.getElementById('showInternal').children[1].setAttribute('required', true);
-      for(i=0;i<2;i++){
+      for(i=0;i<3;i++){
         document.getElementsByClassName('hiddenDimak')[i].style.display = "none";
         document.getElementsByClassName('hiddenDimak')[i].children[1].value = "";
         document.getElementsByClassName('hiddenDimak')[i].children[1].removeAttribute('required');
       }
     }
     else if(option == 'external'){
-      for(i=0;i<2;i++){
+      for(i=0;i<3;i++){
         document.getElementsByClassName('hiddenDimak')[i].style.display = "block";
         document.getElementsByClassName('hiddenDimak')[i].children[1].setAttribute('required', true);
       }
@@ -162,7 +158,7 @@
       document.getElementById('showInternal').children[1].removeAttribute('required');
     }
     else{
-      for(i=0;i<2;i++){
+      for(i=0;i<3;i++){
         document.getElementsByClassName('hiddenDimak')[i].style.display = "none";
         document.getElementsByClassName('hiddenDimak')[i].children[1].value = "";
         document.getElementsByClassName('hiddenDimak')[i].children[1].removeAttribute('required');
@@ -172,6 +168,117 @@
       document.getElementById('showInternal').children[1].removeAttribute('required');
     }
   }
+</script>
+
+<!-- <script>
+const warehouseSelect=document.getElementById("warehouseSelect")
+let value;
+
+warehouseSelect.addEventListener('change',(e)=>{
+const selectedVal=e.target.value;
+value=selectedVal;
+})
+
+let count = 1;
+function deleteRow(field){
+  let row = field.parentElement.parentElement;
+  row.remove();
+} 
+
+function addFields(){
+  let table = document.getElementById('prodTable');
+  let newRow = document.createElement('tr');
+  newRow.innerHTML = `
+  <td style="width:50%;">
+  <select name="products[]" id="prodName.${count}" class="form-control productSelect">
+  <option value="dis">Select...</option>s
+  </select>
+  </td>
+  <td style="width:20%;"><input type="number" name="quantitiess[]" id="prodQuant" class="form-control"></td>
+  <td style="width:20%;"><input type="text" name="units[]" id="unit" class="form-control"></td>
+  <td align="center"><button class="btn btn-danger" type="button" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+  `;
+  table.appendChild(newRow);
+  count++;
+} 
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#warehouseSelect').change(function () {
+            var warehouseId = $(this).val();
+
+            // Make AJAX request
+            $.ajax({
+                url: '/get-products/' + warehouseId,
+                type: 'GET',
+                success: function (data) {
+                    // Clear and populate product dropdown
+                    $('.productSelect').empty();
+                    $.each(data, function (key, value) {
+                        $('.productSelect').append('<option value="' + value.id + '">' + value.name + ' - ' + value.capacity + ' | Qty: ' + value.quantity + '</option>');
+                    });
+                },
+                error: function (xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            });
+        });
+    });
+</script> -->
+
+
+
+<script>
+    const warehouseSelect = document.getElementById("warehouseSelect");
+    let value;
+
+    warehouseSelect.addEventListener('change', (e) => {
+        const selectedVal = e.target.value;
+        value = selectedVal;
+    });
+
+    let count = 1;
+
+    function deleteRow(field) {
+        let row = field.parentElement.parentElement;
+        row.remove();
+    }
+
+    function addFields() {
+        let table = document.getElementById('prodTable');
+        let newRow = document.createElement('tr');
+        newRow.innerHTML = `
+            <td style="width:50%;">
+                <select name="products[]" id="prodName.${count}" class="form-control productSelect">
+                    <option value="dis">Select...</option>
+                </select>
+            </td>
+            <td style="width:20%;"><input type="number" name="quantitiess[]" id="prodQuant" class="form-control"></td>
+            <td style="width:20%;"><input type="text" name="units[]" id="unit" class="form-control"></td>
+            <td align="center"><button class="btn btn-danger" type="button" onclick="deleteRow(this)"><i class="fa fa-trash"></i></button></td>
+        `;
+        table.appendChild(newRow);
+        $.ajax({
+            url: '/get-products/' + value,
+            type: 'GET',
+            success: function (data) {
+                const productSelect = newRow.querySelector('.productSelect');
+                productSelect.innerHTML = '<option value="dis">Select...</option>';
+                
+                data.forEach(function (product) {
+                    productSelect.innerHTML += `<option value="${product.id}">${product.name} - ${product.capacity} | Qty: ${product.quantity}</option>`;
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error(xhr.responseText);
+            },
+            complete: function () {
+            }
+        });
+
+        count++;
+    }
 </script>
 
 @include('component.footer')
